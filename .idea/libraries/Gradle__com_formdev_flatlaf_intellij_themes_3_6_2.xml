@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.formdev:flatlaf-intellij-themes:3.6.2" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.formdev" artifactId="flatlaf-intellij-themes" version="3.6.2" baseVersion="3.6.2" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.formdev/flatlaf-intellij-themes/3.6.2/1c0ec1964fc53b61b107a4f95add74bed0caa331/flatlaf-intellij-themes-3.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

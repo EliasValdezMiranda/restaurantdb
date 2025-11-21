@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.netbeans.external:AbsoluteLayout:RELEASE270" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.netbeans.external" artifactId="AbsoluteLayout" version="RELEASE270" baseVersion="RELEASE270" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.netbeans.external/AbsoluteLayout/RELEASE270/ef79d190c0562450408729c982ca0c3a758d3887/AbsoluteLayout-RELEASE270.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
