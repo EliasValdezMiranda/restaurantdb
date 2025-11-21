@@ -188,16 +188,14 @@ public class Cliente extends javax.swing.JPanel {
         }
         JDBCTableAdapter modelo = (JDBCTableAdapter) jTable.getModel();
         int filas_modificadas = 0;
-        String sql = "SELECT d_customer(?);";
+        String sql = "DELETE FROM customer WHERE customer_id = ?;";
         for(int i : filas) {
             try {
                 String idValue = modelo.getValueAt(i, 0).toString();
                 database.empezarTransaccion();
                 PreparedStatement statement = database.con.prepareStatement(sql);
                 statement.setInt(1, Integer.parseInt(idValue));
-                ResultSet rs = statement.executeQuery();
-                rs.next();
-                filas_modificadas += rs.getInt(1);
+                filas_modificadas += statement.executeUpdate();
                 database.commit();
             }
             catch (SQLException ex) {
