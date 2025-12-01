@@ -7,9 +7,22 @@ package com.dashboard;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.pgsql.Database;
 import com.vistas.Cliente;
+import com.vistas.Ingrediente;
+import com.vistas.IngredienteObjetoMenu;
+import com.vistas.Medicion;
+import com.vistas.MedicionIngrediente;
+import com.vistas.Menu;
+import com.vistas.Mesa;
+import com.vistas.ObjetoMenu;
+import com.vistas.Orden;
+import com.vistas.OrdenObjetoMenu;
 import com.vistas.Principal;
-import com.vistas.agregar.C_Table;
+import com.vistas.Reservacion;
+import com.vistas.RolStaff;
+import com.vistas.Staff;
+import com.vistas.TipoIngrediente;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -50,7 +63,7 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonTable = new javax.swing.JButton();
         jButtonOrder = new javax.swing.JButton();
         jButtonOrderMenuItem = new javax.swing.JButton();
-        jButtonBookingMenuItem = new javax.swing.JButton();
+        jButtonMenuItem = new javax.swing.JButton();
         jButtonMenu = new javax.swing.JButton();
         jButtonMenuItemIngredient = new javax.swing.JButton();
         jButtonIngredientType = new javax.swing.JButton();
@@ -119,6 +132,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonBooking.setBorderPainted(false);
         jButtonBooking.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonBooking.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonBooking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBookingMouseClicked(evt);
+            }
+        });
 
         jButtonTable.setBackground(new java.awt.Color(0, 131, 219));
         jButtonTable.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -142,6 +160,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonOrder.setBorderPainted(false);
         jButtonOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonOrder.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonOrderMouseClicked(evt);
+            }
+        });
 
         jButtonOrderMenuItem.setBackground(new java.awt.Color(0, 131, 219));
         jButtonOrderMenuItem.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -151,15 +174,25 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonOrderMenuItem.setBorderPainted(false);
         jButtonOrderMenuItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonOrderMenuItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonOrderMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonOrderMenuItemMouseClicked(evt);
+            }
+        });
 
-        jButtonBookingMenuItem.setBackground(new java.awt.Color(0, 131, 219));
-        jButtonBookingMenuItem.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
-        jButtonBookingMenuItem.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonBookingMenuItem.setText("Objeto del menú");
-        jButtonBookingMenuItem.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 15, 1, 1, new java.awt.Color(0, 0, 0)));
-        jButtonBookingMenuItem.setBorderPainted(false);
-        jButtonBookingMenuItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonBookingMenuItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMenuItem.setBackground(new java.awt.Color(0, 131, 219));
+        jButtonMenuItem.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
+        jButtonMenuItem.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMenuItem.setText("Objeto del menú");
+        jButtonMenuItem.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 15, 1, 1, new java.awt.Color(0, 0, 0)));
+        jButtonMenuItem.setBorderPainted(false);
+        jButtonMenuItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenuItem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMenuItemMouseClicked(evt);
+            }
+        });
 
         jButtonMenu.setBackground(new java.awt.Color(0, 131, 219));
         jButtonMenu.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -169,6 +202,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonMenu.setBorderPainted(false);
         jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMenuMouseClicked(evt);
+            }
+        });
 
         jButtonMenuItemIngredient.setBackground(new java.awt.Color(0, 131, 219));
         jButtonMenuItemIngredient.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -178,6 +216,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonMenuItemIngredient.setBorderPainted(false);
         jButtonMenuItemIngredient.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMenuItemIngredient.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMenuItemIngredient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMenuItemIngredientMouseClicked(evt);
+            }
+        });
 
         jButtonIngredientType.setBackground(new java.awt.Color(0, 131, 219));
         jButtonIngredientType.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -187,6 +230,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonIngredientType.setBorderPainted(false);
         jButtonIngredientType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonIngredientType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonIngredientType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonIngredientTypeMouseClicked(evt);
+            }
+        });
 
         jButtonIngrediente.setBackground(new java.awt.Color(0, 131, 219));
         jButtonIngrediente.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -196,6 +244,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonIngrediente.setBorderPainted(false);
         jButtonIngrediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonIngrediente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonIngrediente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonIngredienteMouseClicked(evt);
+            }
+        });
 
         jButtonIngredientMeasurement.setBackground(new java.awt.Color(0, 131, 219));
         jButtonIngredientMeasurement.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -205,6 +258,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonIngredientMeasurement.setBorderPainted(false);
         jButtonIngredientMeasurement.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonIngredientMeasurement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonIngredientMeasurement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonIngredientMeasurementMouseClicked(evt);
+            }
+        });
 
         jButtonMeasurement.setBackground(new java.awt.Color(0, 131, 219));
         jButtonMeasurement.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -214,6 +272,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonMeasurement.setBorderPainted(false);
         jButtonMeasurement.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMeasurement.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonMeasurement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonMeasurementMouseClicked(evt);
+            }
+        });
 
         jButtonStaff.setBackground(new java.awt.Color(0, 131, 219));
         jButtonStaff.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -223,6 +286,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonStaff.setBorderPainted(false);
         jButtonStaff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonStaff.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonStaff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonStaffMouseClicked(evt);
+            }
+        });
 
         jButtonStaffRole.setBackground(new java.awt.Color(0, 131, 219));
         jButtonStaffRole.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
@@ -232,6 +300,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButtonStaffRole.setBorderPainted(false);
         jButtonStaffRole.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonStaffRole.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonStaffRole.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonStaffRoleMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelMenusLayout = new javax.swing.GroupLayout(jPanelMenus);
         jPanelMenus.setLayout(jPanelMenusLayout);
@@ -249,7 +322,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jButtonTable, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButtonOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButtonOrderMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButtonBookingMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButtonMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButtonMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButtonMenuItemIngredient, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jButtonIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +352,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jButtonOrderMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jButtonBookingMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonMenuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButtonMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -389,7 +462,7 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClientMouseClicked
-        setContenido(new Principal());
+        setContenido(new Principal(DATABASE));
     }//GEN-LAST:event_jButtonClientMouseClicked
 
     private void jButtonPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPrincipalMouseClicked
@@ -397,13 +470,61 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPrincipalMouseClicked
 
     private void jButtonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonTableMouseClicked
-        setContenido(new C_Table());
+        setContenido(new Mesa(DATABASE));
     }//GEN-LAST:event_jButtonTableMouseClicked
+
+    private void jButtonBookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBookingMouseClicked
+        setContenido(new Reservacion(DATABASE));
+    }//GEN-LAST:event_jButtonBookingMouseClicked
+
+    private void jButtonOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOrderMouseClicked
+        setContenido(new Orden(DATABASE));
+    }//GEN-LAST:event_jButtonOrderMouseClicked
+
+    private void jButtonOrderMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOrderMenuItemMouseClicked
+        setContenido(new OrdenObjetoMenu(DATABASE));
+    }//GEN-LAST:event_jButtonOrderMenuItemMouseClicked
+
+    private void jButtonMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMenuItemMouseClicked
+        setContenido(new ObjetoMenu(DATABASE));
+    }//GEN-LAST:event_jButtonMenuItemMouseClicked
+
+    private void jButtonMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMenuMouseClicked
+        setContenido(new Menu(DATABASE));
+    }//GEN-LAST:event_jButtonMenuMouseClicked
+
+    private void jButtonMenuItemIngredientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMenuItemIngredientMouseClicked
+        setContenido(new IngredienteObjetoMenu(DATABASE));
+    }//GEN-LAST:event_jButtonMenuItemIngredientMouseClicked
+
+    private void jButtonIngredienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIngredienteMouseClicked
+        setContenido(new Ingrediente(DATABASE));
+    }//GEN-LAST:event_jButtonIngredienteMouseClicked
+
+    private void jButtonIngredientTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIngredientTypeMouseClicked
+        setContenido(new TipoIngrediente(DATABASE));
+    }//GEN-LAST:event_jButtonIngredientTypeMouseClicked
+
+    private void jButtonMeasurementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMeasurementMouseClicked
+        setContenido(new Medicion(DATABASE));
+    }//GEN-LAST:event_jButtonMeasurementMouseClicked
+
+    private void jButtonIngredientMeasurementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIngredientMeasurementMouseClicked
+        setContenido(new MedicionIngrediente(DATABASE));
+    }//GEN-LAST:event_jButtonIngredientMeasurementMouseClicked
+
+    private void jButtonStaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStaffMouseClicked
+        setContenido(new Staff(DATABASE));
+    }//GEN-LAST:event_jButtonStaffMouseClicked
+
+    private void jButtonStaffRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStaffRoleMouseClicked
+        setContenido(new RolStaff(DATABASE));
+    }//GEN-LAST:event_jButtonStaffRoleMouseClicked
 
     
     
     private void initContent() {
-        setContenido(new Principal());
+        setContenido(new Principal(DATABASE));
     }
     
     public static void setContenido(JPanel panel) {
@@ -451,13 +572,13 @@ public class Dashboard extends javax.swing.JFrame {
     private static javax.swing.JPanel contenido;
     private javax.swing.JPanel fondo;
     private javax.swing.JButton jButtonBooking;
-    private javax.swing.JButton jButtonBookingMenuItem;
     private javax.swing.JButton jButtonClient;
     private javax.swing.JButton jButtonIngredientMeasurement;
     private javax.swing.JButton jButtonIngredientType;
     private javax.swing.JButton jButtonIngrediente;
     private javax.swing.JButton jButtonMeasurement;
     private javax.swing.JButton jButtonMenu;
+    private javax.swing.JButton jButtonMenuItem;
     private javax.swing.JButton jButtonMenuItemIngredient;
     private javax.swing.JButton jButtonOrder;
     private javax.swing.JButton jButtonOrderMenuItem;

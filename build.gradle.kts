@@ -19,6 +19,7 @@ dependencies {
     implementation("org.netbeans.external:AbsoluteLayout:RELEASE270")
     implementation("com.formdev:flatlaf:3.6.2")
     implementation("com.formdev:flatlaf-intellij-themes:3.6.2")
+    implementation("org.apache.poi:poi-ooxml:5.5.0")
 }
 
 tasks.test {

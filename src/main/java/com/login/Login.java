@@ -7,6 +7,7 @@ import com.pgsql.Propiedades;
 import java.awt.Color;
 import java.util.Properties;
 import static com.pgsql.Database.getDatabase;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,9 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         FlatLightLaf.setup();
         initComponents();
+        if (PROPIEDADES.getPropiedades() == null) {
+            return;
+        }
         llenarCampos(PROPIEDADES.getPropiedades());
     }
     

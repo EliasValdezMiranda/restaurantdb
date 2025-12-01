@@ -6,7 +6,7 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[611, 463]"/>
+      <Dimension value="[611, 477]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="fondo" alignment="0" max="32767" attributes="0"/>
+          <Component id="fondo" alignment="0" pref="643" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -39,24 +39,35 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[611, 477]"/>
+        </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="486" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButtonInforme" alignment="0" pref="631" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="414" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="344" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButtonInforme" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -70,6 +81,46 @@
             <Property name="text" type="java.lang.String" value="&#xa1;Bienvenido!"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="jButtonInforme">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Generar informe de la base de datos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInformeActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="jTextArea1">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Este es el proyecto final del Equipo #12 en la materia &quot;Base de Datos I&quot; impartida por el profesor Ren&#xe9; Francisco Navarro Hernandez.&#xa;&#xa;El proyecto cumple con los puntos solicitados de la siguiente forma:&#xa;&#xa;- Implementaci&#xf3;n de Java + Swing: Utilizando librer&#xed;as como Flatlaf y AbsoluteLayout, aseguramos el dise&#xf1;o fluido de la aplicaci&#xf3;n en Java Swing.&#xa;&#xa;- Aplicaci&#xf3;n CRUD: La aplicaci&#xf3;n se conecta a la base de datos &quot;restaurantdb&quot;, permitiendo la lectura, creaci&#xf3;n, edici&#xf3;n y eliminaci&#xf3;n de las entradas en cada tabla.&#xa;&#xa;- Tres procesos de negocio: Implementamos cuatro procesos de negocios en nuestra aplicaci&#xf3;n. Cada proceso se accede por medio de un gran boton en la parte inferior de cada vista de tabla.&#xa;1.- Modificar clasificaci&#xf3;n del cliente: Observando la deuda de un cliente y la cantidad de reservaciones que ha hecho, se determina si es elegible para una actualizaci&#xf3;n de clasificaci&#xf3;n, y, de aceptar, se le agrega una deuda determinada por el nivel al que se actualiza.&#xa;2.- Modificar objetos de la orden: Al seleccionar una orden, se pueden observar los objetos solicitados en dicha orden, as&#xed; como el miembro del personal encargado de atenderlo y la cuenta por pagar. Dentro de esta ventana, se ofrecen atajos para agregar, editar y/o eliminar objetos en la orden seleccionada.&#xa;3.- Administrar ingredientes: Al seleccionar un objeto del men&#xfa;, se pueden observar los ingredientes que se requieren para prepararlo, as&#xed; como las cantidades y las mediciones utilizadas. Tambi&#xe9;n se ofrecen atajos para agregar, editar y/o eliminar ingredientes, la ventana provista ofreciendo una facilidad de acceso a las mediciones disponibles para un ingrediente dado.&#xa;4.- Modificar mediciones de ingredientes: Al seleccionar un ingrediente, se pueden observar las mediciones disponibles para este, ofreciendo una vista sencilla para la inserci&#xf3;n, edici&#xf3;n y eliminaci&#xf3;n de estas relaciones.&#xa;&#xa;- Manejo de transacciones: Las consultas en este proyecto se ejecutan con transacciones, lo que asegura la integridad de la base de datos en caso de operaciones no exitosas.&#xa;&#xa;- Generaci&#xf3;n de informes: Utilizando la librer&#xed;a Apache POI, podemos generar informes con informaci&#xf3;n relevante de la base de datos. Los informes se guardan con su fecha y hora en la carpeta &quot;informes&quot; en la ra&#xed;z del proyecto.&#xa;&#xa;Hecho por El&#xed;as Valdez Miranda y Angel Andr&#xe9;s Santillanes Hern&#xe1;ndez"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                    <EmptyBorder bottom="5" left="5" right="5" top="5"/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

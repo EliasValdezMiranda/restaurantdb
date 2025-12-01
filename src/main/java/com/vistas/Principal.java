@@ -4,17 +4,24 @@
  */
 package com.vistas;
 
+import com.informes.Word;
+import com.pgsql.Database;
+
 /**
  *
  * @author Elias
  */
 public class Principal extends javax.swing.JPanel {
 
+    private Database database;
+    
     /**
      * Creates new form Principal
+     * @param database
      */
-    public Principal() {
+    public Principal(Database database) {
         initComponents();
+        this.database = database;
     }
 
     /**
@@ -28,37 +35,66 @@ public class Principal extends javax.swing.JPanel {
 
         fondo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButtonInforme = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(611, 463));
+        setPreferredSize(new java.awt.Dimension(611, 477));
 
         fondo.setBackground(new java.awt.Color(255, 255, 255));
+        fondo.setPreferredSize(new java.awt.Dimension(611, 477));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("¡Bienvenido!");
+
+        jButtonInforme.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButtonInforme.setText("Generar informe de la base de datos");
+        jButtonInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInformeActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Este es el proyecto final del Equipo #12 en la materia \"Base de Datos I\" impartida por el profesor René Francisco Navarro Hernandez.\n\nEl proyecto cumple con los puntos solicitados de la siguiente forma:\n\n- Implementación de Java + Swing: Utilizando librerías como Flatlaf y AbsoluteLayout, aseguramos el diseño fluido de la aplicación en Java Swing.\n\n- Aplicación CRUD: La aplicación se conecta a la base de datos \"restaurantdb\", permitiendo la lectura, creación, edición y eliminación de las entradas en cada tabla.\n\n- Tres procesos de negocio: Implementamos cuatro procesos de negocios en nuestra aplicación. Cada proceso se accede por medio de un gran boton en la parte inferior de cada vista de tabla.\n1.- Modificar clasificación del cliente: Observando la deuda de un cliente y la cantidad de reservaciones que ha hecho, se determina si es elegible para una actualización de clasificación, y, de aceptar, se le agrega una deuda determinada por el nivel al que se actualiza.\n2.- Modificar objetos de la orden: Al seleccionar una orden, se pueden observar los objetos solicitados en dicha orden, así como el miembro del personal encargado de atenderlo y la cuenta por pagar. Dentro de esta ventana, se ofrecen atajos para agregar, editar y/o eliminar objetos en la orden seleccionada.\n3.- Administrar ingredientes: Al seleccionar un objeto del menú, se pueden observar los ingredientes que se requieren para prepararlo, así como las cantidades y las mediciones utilizadas. También se ofrecen atajos para agregar, editar y/o eliminar ingredientes, la ventana provista ofreciendo una facilidad de acceso a las mediciones disponibles para un ingrediente dado.\n4.- Modificar mediciones de ingredientes: Al seleccionar un ingrediente, se pueden observar las mediciones disponibles para este, ofreciendo una vista sencilla para la inserción, edición y eliminación de estas relaciones.\n\n- Manejo de transacciones: Las consultas en este proyecto se ejecutan con transacciones, lo que asegura la integridad de la base de datos en caso de operaciones no exitosas.\n\n- Generación de informes: Utilizando la librería Apache POI, podemos generar informes con información relevante de la base de datos. Los informes se guardan con su fecha y hora en la carpeta \"informes\" en la raíz del proyecto.\n\nHecho por Elías Valdez Miranda y Angel Andrés Santillanes Sánchez");
+        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(486, 486, 486))
+                .addContainerGap()
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonInforme, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(414, 414, 414))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,8 +102,23 @@ public class Principal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInformeActionPerformed
+   
+    Word documento = new Word(database);
+    boolean exito = documento.generarInforme();
+
+    if(exito){
+        javax.swing.JOptionPane.showMessageDialog(this,"Informe generado correctamente");
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this,"Error al generar informe");
+    }
+    }//GEN-LAST:event_jButtonInformeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel fondo;
+    private javax.swing.JButton jButtonInforme;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

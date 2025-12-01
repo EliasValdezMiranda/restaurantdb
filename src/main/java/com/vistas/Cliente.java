@@ -7,12 +7,12 @@ package com.vistas;
 import com.dashboard.Dashboard;
 import com.pgsql.Database;
 import com.pgsql.JDBCTableAdapter;
-import com.vistas.agregar.C_Cliente;
-import java.sql.CallableStatement;
+import static com.procedimientos.clasificacionCliente.actualizarClasificacionCliente;
+import com.vistas.agregar.CU_Cliente;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,6 +50,7 @@ public class Cliente extends javax.swing.JPanel {
         jButtonObtener = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
 
         fondo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -103,6 +104,14 @@ public class Cliente extends javax.swing.JPanel {
             }
         });
 
+        jButtonEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEditarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
@@ -110,18 +119,19 @@ public class Cliente extends javax.swing.JPanel {
             .addGroup(fondoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                    .addComponent(jScrollPane)
                     .addGroup(fondoLayout.createSequentialGroup()
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(514, 514, 514))
                     .addComponent(jButtonClasificacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(fondoLayout.createSequentialGroup()
-                        .addComponent(jButtonObtener, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(2, 2, 2)))
+                        .addComponent(jButtonObtener, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         fondoLayout.setVerticalGroup(
@@ -135,7 +145,8 @@ public class Cliente extends javax.swing.JPanel {
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonObtener, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jButtonClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -154,10 +165,10 @@ public class Cliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonObtenerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonObtenerMouseClicked
-        final String sql = "SELECT * FROM customer";
+        final String sql = "SELECT * FROM customer ORDER BY customer_id";
         try (ResultSet rs = database.query(sql)){
             JDBCTableAdapter modelo = new JDBCTableAdapter(rs);
-            // modelo.addTableModelListener(new CoffeesTableListener(db));
+            // modelo.addTableModelListener(new ClientTableListener(database));
             jTable.setModel(modelo);
         } catch (SQLException ex) {
             com.error.Error jFrameError = new com.error.Error("Error: " + ex.getMessage());
@@ -167,8 +178,7 @@ public class Cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonObtenerMouseClicked
 
     private void jButtonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAgregarMouseClicked
-        Dashboard.setContenido(new C_Cliente());
-        // TODO add your handling code here:
+        Dashboard.setContenido(new CU_Cliente(database,null));
     }//GEN-LAST:event_jButtonAgregarMouseClicked
 
     private void jButtonEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEliminarMouseClicked
@@ -223,14 +233,32 @@ public class Cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonEliminarMouseClicked
 
     private void jButtonClasificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClasificacionMouseClicked
-        // TODO add your handling code here:
+    actualizarClasificacionCliente(database, jTable);
+    jButtonObtenerMouseClicked(null);
     }//GEN-LAST:event_jButtonClasificacionMouseClicked
+
+    private void jButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarMouseClicked
+        int[] filas = jTable.getSelectedRows();
+        if (filas.length == 0) {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila para editar",
+                    "Selección de fila", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        else if (filas.length > 1) {
+            JOptionPane.showMessageDialog(null, "Selecciona solo una fila para editar",
+                    "Selección de fila", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        FilaTabla fila = new FilaTabla(jTable.getModel(),jTable.getSelectedRow());
+        Dashboard.setContenido(new CU_Cliente(database,fila));
+    }//GEN-LAST:event_jButtonEditarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel fondo;
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonClasificacion;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonObtener;
     private javax.swing.JLabel jLabelTitulo;
