@@ -643,7 +643,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Por El&#xed;as Valdez Miranda y Angel Andr&#xe9;s Santillanes Sanchez"/>
+                <Property name="text" type="java.lang.String" value="Por El&#xed;as Valdez Miranda y Angel Andr&#xe9;s Santillanes Hern&#xe1;ndez"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelHeaderProfesor">

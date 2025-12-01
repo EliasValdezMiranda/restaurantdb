@@ -379,7 +379,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabelHeaderIntegrantes.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabelHeaderIntegrantes.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelHeaderIntegrantes.setText("Por Elías Valdez Miranda y Angel Andrés Santillanes Sanchez");
+        jLabelHeaderIntegrantes.setText("Por Elías Valdez Miranda y Angel Andrés Santillanes Hernández");
 
         jLabelHeaderProfesor.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabelHeaderProfesor.setForeground(new java.awt.Color(255, 255, 255));
